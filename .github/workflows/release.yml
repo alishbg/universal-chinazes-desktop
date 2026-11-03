@@ -29,7 +29,21 @@ jobs:
             git tag $tag
             git push origin $tag
           }
-      - name: Build and publish Setup.exe
-        run: npm run dist -- --publish always
+      - name: Build Setup.exe
+        run: npm run dist
+      - name: Publish release files
+        shell: pwsh
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $version = node -p "require('./package.json').version"
+          $tag = "v$version"
+          gh release view $tag *> $null
+          if ($LASTEXITCODE -ne 0) {
+            gh release create $tag --title $version --notes "Universal Chinazes for Windows"
+          }
+          gh release upload $tag `
+            "release/Universal-Chinazes-Setup-$version.exe" `
+            "release/Universal-Chinazes-Setup-$version.exe.blockmap" `
+            "release/latest.yml" `
+            --clobber

@@ -30,7 +30,7 @@ jobs:
             git push origin $tag
           }
       - name: Build Setup.exe
-        run: npm run dist
+        run: npm run dist -- --publish never
       - name: Publish release files
         shell: pwsh
         env:

@@ -40,8 +40,10 @@
       "shortcutName": "Universal Chinazes"
     },
     "publish": {
-      "provider": "generic",
-      "url": "https://illia-olha-hub.rocckk6339.chatgpt.site/downloads/"
+      "provider": "github",
+      "owner": "alishbg",
+      "repo": "universal-chinazes-desktop",
+      "releaseType": "release"
     }
   }
 }

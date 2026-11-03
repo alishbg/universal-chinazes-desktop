@@ -1,0 +1,47 @@
+{
+  "name": "universal-chinazes-desktop",
+  "version": "1.0.0",
+  "description": "Universal Chinazes desktop application",
+  "main": "main.cjs",
+  "author": "Illia Danylchenko",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis"
+  },
+  "dependencies": {
+    "electron-updater": "^6.6.2"
+  },
+  "devDependencies": {
+    "electron": "^39.2.3",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.universalchinazes.desktop",
+    "productName": "Universal Chinazes",
+    "artifactName": "Universal-Chinazes-Setup-${version}.${ext}",
+    "asar": true,
+    "files": ["main.cjs", "package.json", "assets/**"],
+    "directories": {
+      "output": "release",
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": [{"target": "nsis", "arch": ["x64"]}],
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Universal Chinazes"
+    },
+    "publish": {
+      "provider": "generic",
+      "url": "https://illia-olha-hub.rocckk6339.chatgpt.site/downloads/"
+    }
+  }
+}
